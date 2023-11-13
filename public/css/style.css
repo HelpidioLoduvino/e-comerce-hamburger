@@ -1,0 +1,132 @@
+body{
+    overflow-x: hidden;
+}
+.client-body {
+    background-color: peru;
+}
+.myNavbar {
+    background-color: sienna;
+}
+
+.link-color {
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    color: white;
+    transition: border-color 0.3s;
+  }
+  
+  .link-color:hover {
+    color: wheat;
+    border-bottom: 2px solid #FF0000;
+  }
+  
+  .more{
+    font-size: xx-large;
+  }
+
+  .more:hover {
+    color: wheat;
+  }
+
+footer{
+    background-color: sienna;
+    width: 100%;
+    text-align: center;
+}
+
+footer th{
+    color: white;
+}
+
+footer td {
+    color: white;
+}
+
+footer div{
+    color: white;
+}
+
+.card{
+    background-color: navajowhite;
+    border: 5px solid sienna;
+}
+
+.letra {
+    color: white;
+}
+
+.card-profile{
+    background-color: wheat;
+    border: 1px solid rgb(129, 129, 129);
+    width: 40rem;
+}
+.admin-navbar {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(199, 199, 199, 0.301);
+}
+
+.sidebar {
+    width: 220px;
+    background-color: rgb(0, 0, 102);
+    color: #fff;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    overflow-y: auto;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.delimitador {
+    border: 2px solid goldenrod;
+}
+
+.add-product-form{
+    width: 20rem;
+    border: 2px solid rgb(119, 119, 119);
+    margin-top: 20px;
+}
+
+.msg-div{
+    margin-right: 100px;
+}
+
+.add-product-card {
+    background-color: rgb(211, 211, 211);
+}
+
+.home-line {
+    border: 5px solid ivory;
+}
+
+.card-white {
+    background-color: white;
+    border: 1px solid rgb(129, 129, 129);
+}
+
+#order-qty{
+    color: yellow;
+}
+
+.profile-frame{
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
+    border-radius: 40px;
+    width: 40rem;
+
+}
