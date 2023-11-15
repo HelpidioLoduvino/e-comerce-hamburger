@@ -88,25 +88,25 @@
                         <input type="hidden" name="type" value="client">
 
                         <div class="mb-3">
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Nome">
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Nome" required>
                         </div>
 
                         <div class="mb-3">
-                            <input type="text" name="surname" id="surname" class="form-control" placeholder="Sobrenome">
+                            <input type="text" name="surname" id="surname" class="form-control" placeholder="Sobrenome" required>
                         </div>
 
                         <div class="mb-3">
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
                         </div>
 
                         <div class="mb-3">
                             <input type="number" name="contact" id="contact" class="form-control"
-                                placeholder="Contacto">
+                                placeholder="Contacto" required>
                         </div>
 
                         <div class="mb-3">
                             <input type="password" name="password" id="password" class="form-control"
-                                placeholder="Palavra-Passe">
+                                placeholder="Palavra-Passe" required>
                         </div>
 
                         <div class="mb-3">
@@ -128,12 +128,12 @@
                     <form action="/login" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
                         </div>
 
                         <div class="mb-3">
                             <input type="password" name="password" id="password" class="form-control"
-                                placeholder="Palavra-Passe">
+                                placeholder="Palavra-Passe" required>
                         </div>
 
                         <div class="mb-3">

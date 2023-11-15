@@ -24,26 +24,33 @@ class UserController extends Controller
 
     public function store(Request $request){
 
-        User::create([
-            'name' => $request->input('name'),
-            'surname' => $request->input('surname'),
-            'email' => $request->input('email'),
-            'contact' => $request->input('contact'),
-            'password' => Hash::make($request->input('password')),
-            'type' => $request->input('type')
-        ]);
+        $contact = $request->input('contact');
 
-        Statistic::updateOrInsert(
-            ['id' => 1],
-            ['clients' => \DB::raw('clients + 1')]
-        );
+        if(strlen($contact)  < 9){
+            return redirect('/')->with('msg', 'Contacto Incorrecto!');
+        } else {
+            User::create([
+                'name' => $request->input('name'),
+                'surname' => $request->input('surname'),
+                'email' => $request->input('email'),
+                'contact' => $request->input('contact'),
+                'password' => Hash::make($request->input('password')),
+                'type' => $request->input('type')
+            ]);
+    
+            Statistic::updateOrInsert(
+                ['id' => 1],
+                ['clients' => \DB::raw('clients + 1')]
+            );
+    
+            return redirect('/')->with('msg', 'Dados inseridos com sucesso!');
+        }
 
-        return redirect('/')->with('msg', 'Dados inseridos com sucesso!');
+      
     }
 
     
     public function login (Request $request) {
-
 
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             $user = Auth::user();
@@ -60,6 +67,8 @@ class UserController extends Controller
                 return view('/')->with('error', 'Erro ao Fazer Login');
                     break;
             }
+        } else {
+            return redirect('/')->with('msg', 'Email ou Senha Incorrecta!');
         }
     }
 

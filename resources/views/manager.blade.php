@@ -46,7 +46,7 @@
         <h5 style="margin-right:10px;">FINANÇAS</h5>
         <select>
             <option>
-                @php 
+                @php
                 echo now()->year;
                 @endphp
             </option>
@@ -74,13 +74,23 @@
             </tr>
         </thead>
         <tbody>
-            @if(!empty($total_month))
             <tr>
-                <td>{{$total_month}},00 AOA</td>
-            </tr>
-            @endif
+                @if(!empty($total_month))
+                @for($i = 1; $i <= 12; $i++) 
+                <td>
+                    @php
+                    $month = now()->format('m');
+                    @endphp
 
+                    @if($month == $i)
+                    {{$total_month}},00 AOA
+                    @endif
+                </td>
+                @endfor
+                @endif
+            </tr>
         </tbody>
     </table>
+
 </div>
 @endsection

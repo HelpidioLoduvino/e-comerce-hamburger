@@ -55,24 +55,17 @@ class ProductController extends Controller
             }
         }
 
-        $finances =  Sale::all();
-
         $total_month = 0;
 
-        $year = now()->year;
         $month = now()->format('m');
-
-        $finance_yearly = DB::table('sales')
-        ->whereYear('created_at', $year)
-        ->get();
 
         $finance_monthly = DB::table('sales')
         ->whereMonth('created_at', $month)
         ->get();
-      
-                foreach ($finances as $finance) {
-                    $total_month += $finance->total;
-                }
+
+        foreach($finance_monthly as $profit){
+            $total_month += $profit->total;
+        }
         
         return view('manager', compact('statistics', 'sum', 'total_month'));
     }
