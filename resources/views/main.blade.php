@@ -4,28 +4,27 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{{ asset('/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
-    <link href="{{asset('/font/fontawesome.min.css')}}" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/fontawesome.min.js" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 
 <body class="client-body">
     <nav class="myNavbar navbar navbar-expand">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
-                <img src="{{asset('/img/logo.png')}}" alt="" width="30" height="24">
+                <img src="{{asset('/img/logo.png')}}" alt="" width="40" height="35">
             </a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav">
                     @if (session('type'))
                     <li class="nav-item">
-                        <a class="link-color nav-link" href="/order/{{session('id')}}">Encomendas</a>
+                        <a class="link-color" href="/order/{{session('id')}}">Encomendas</a>
                     </li>
                     @else
                     <li class="nav-item">
-                        <a class="link-color nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">
-                        ENCOMENDAS
+                        <a class="link-color" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        Encomendas
                         </a>
                     </li>
                     @endif
@@ -35,19 +34,19 @@
                 @if(session('type'))
                 <li class="nav-item">
                     <a class="link-color nav-link" href="/cart/{{session('id')}}">
-                        <img src="{{asset('/img/cart.png')}}" alt="" width="30" height="24">
+                        <img src="{{asset('/img/cart.png')}}" alt="" width="40" height="35">
                         @yield('cart-count')
                     </a>
                 </li>
                 @endif
                 @if(!session('type'))
                 <li class="nav-item">
-                    <a class="link-color nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <a class="link-color" data-bs-toggle="modal" data-bs-target="#loginModal" style="margin-right:10px;">
                         Entrar
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="link-color nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <a class="link-color" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Registrar-se
                     </a>
                 </li>
@@ -55,7 +54,7 @@
                 @if(session('type'))
                 <li class="nav-item">
                     <a class="link-color nav-link" href="/my-profile/{{ session('id')}}">
-                        <img src="{{asset('/img/profile.png')}}" alt="" width="30" height="24">
+                        <img src="{{asset('/img/profile.png')}}" alt="" width="40" height="35">
                     </a>
                 </li>
                 @endif
@@ -187,9 +186,8 @@
         </div>
     </footer>
 
-    <script src="{{asset('/bootstrap/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('/bootstrap/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('/font/fontawesome.min.js')}}"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/bootstrap/jquery/jquery.min.js"></script>
 </body>
 
 </html>

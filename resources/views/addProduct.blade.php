@@ -12,7 +12,7 @@
 <div class="container">
     <h5>ADICIONE UM PRODUTO</h5>
     <div class="delimitador"></div>
-    <div class="card-white mt-3 d-flex justify-content-center" >
+    <div class="card-white card card-body mt-3 " >
         <form method="post" action="/add-product" enctype="multipart/form-data">
             @csrf
             <div class="form-group mb-3 mt-3">

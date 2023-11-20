@@ -2,26 +2,26 @@
 
 @if(session('type'))
 @section('cart-count')
-<span><small>{{$sum}}</small></span>
+<span class="letra"><small>{{$sum}}</small></span>
 @endsection
 @endif
 
 @section('content')
 <div class="container mt-2">
-    <div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="2000">
-                <img src="{{asset('/img/logo.png')}}" class="d-block" height="500" alt="..."
-                    style="transform: rotate(12deg)">
-            </div>
-            <div class="carousel-item d-flex justify-content-center" data-bs-interval="2000">
-                <img src="{{asset('/img/logo.png')}}" class="d-block" height="500" style="transform: rotate(25deg)">
-            </div>
-            <div class="carousel-item d-flex justify-content-end" data-bs-interval="2000">
-                <img src="{{asset('/img/logo.png')}}" class="d-block" height="500" alt="...">
-            </div>
+<div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="2000">
+            <img src="{{asset('/img/logo.png')}}" class="d-block w-100" alt="..." style="transform: rotate(12deg)">
+        </div>
+        <div class="carousel-item d-flex justify-content-center" data-bs-interval="2000">
+            <img src="{{asset('/img/logo.png')}}" class="d-block w-100" style="transform: rotate(25deg)">
+        </div>
+        <div class="carousel-item d-flex justify-content-end" data-bs-interval="2000">
+            <img src="{{asset('/img/logo.png')}}" class="d-block w-100" alt="...">
         </div>
     </div>
+</div>
+
 </div>
 
 <h5 class="letra card-title mt-3">MENU</h5>
@@ -31,7 +31,7 @@
     <div class="row">
         @foreach($products as $product)
         <div class="col">
-            <div class="card mb-3" style="width: 18rem;">
+            <div class="card mb-3 mx-auto" style="width: 18rem;">
                 <img src="{{ asset('/img/bdImages/'. $product->image) }}" class="myImg card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{$product->product_name}}</h5>
@@ -58,21 +58,21 @@
     </div>
 </div>
 <div class="d-flex justify-content-center">
-    <a class="letra nav-link more" href="/view/show-all-products">...</a>
+    <a class="more" href="/view/show-all-products">...</a>
 </div>
 
 <h5 class="letra card-title mt-3">NOVIDADES</h5>
 <div class="home-line"></div>
 <div id="carouselExampleCaptions" class="carousel slide mt-3" data-bs-ride="carousel">
     <div class="carousel-inner">
-        @foreach($publicities as $publicity)
-        <div class="carousel-item active d-flex justify-content-center">
-            <img src="{{asset('/img/bdImages/'. $publicity->img)}}" class="d-block w-50" height="500" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>{{$publicity->title}}</h5>
-                <p>{{$publicity->pub_description}}</p>
+        @foreach($publicities as $index => $publicity)
+            <div class="carousel-item {{$index === 0 ? 'active' : ''}} d-flex justify-content-center">
+                <img src="{{asset('/img/bdImages/'. $publicity->img)}}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>{{$publicity->title}}</h5>
+                    <p>{{$publicity->pub_description}}</p>
+                </div>
             </div>
-        </div>
         @endforeach
     </div>
 </div>

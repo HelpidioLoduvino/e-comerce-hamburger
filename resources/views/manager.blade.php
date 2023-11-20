@@ -15,34 +15,35 @@
 </div>
 <div class="container d-flex justify-content-center">
     <div class="row">
-        <div class="col">
-            <div class="card-white card" style="max-width: 18rem;">
-                <div class="card-body">
+        <div class="col-sm-12 col-md-6 mb-3">
+            <div class="card-white card mx-auto" style="max-width: 18rem;">
+                <div class="card-body text-center">
                     <span class="d-flex justify-content-center">
                         <img src="{{ asset('/img/grafico-vendas.png')}}" class="img-fluid rounded-start" width="200"
                             alt="...">
                     </span>
-                    <h5 class="card-title mt-3 d-flex justify-content-center">{{$statistics->sales}} VENDA(S)</h5>
+                    <h5 class="card-title mt-3">{{$statistics->sales}} VENDA(S)</h5>
                 </div>
             </div>
         </div>
 
-        <div class="col">
-            <div class="card-white card" style="max-width: 18rem;">
-                <div class="card-body">
+        <div class="col-sm-12 col-md-6">
+            <div class="card-white card mx-auto" style="max-width: 18rem;">
+                <div class="card-body text-center">
                     <span class="d-flex justify-content-center">
                         <img src="{{ asset('/img/grafico-subida.png')}}" class="img-fluid rounded-start" width="200"
                             alt="...">
                     </span>
-                    <h5 class="card-title mt-3 d-flex justify-content-center">{{$statistics->clients}} CLIENTE(S)</h5>
+                    <h5 class="card-title mt-3">{{$statistics->clients}} CLIENTE(S)</h5>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
+
+
 <div class="container mt-3 mb-3">
-    <div class="d-flex m-3">
+    <div class="d-flex">
         <h5 style="margin-right:10px;">FINANÇAS</h5>
         <select>
             <option>
@@ -52,45 +53,42 @@
             </option>
         </select>
     </div>
-    <div class="delimitador"></div>
+    <div class="delimitador mt-3"></div>
 </div>
 
 <div class="container">
-    <table class="table table-bordered table-active">
-        <thead>
-            <tr>
-                <th>Jan</th>
-                <th>Fev</th>
-                <th>Mar</th>
-                <th>Abr</th>
-                <th>Mai</th>
-                <th>Jun</th>
-                <th>Jul</th>
-                <th>Ago</th>
-                <th>Set</th>
-                <th>Out</th>
-                <th>Nov</th>
-                <th>Dez</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                @if(!empty($total_month))
-                @for($i = 1; $i <= 12; $i++) 
-                <td>
-                    @php
-                    $month = now()->format('m');
-                    @endphp
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-active">
+                    <thead>
+                        <tr>
+                            <th>Mês</th>
+                            <td colspan="2">
+                                @php
+                                $month = now()->format('m');
+                                @endphp
+                                {{$month}}
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            @if(!empty($total_month))
 
-                    @if($month == $i)
-                    {{$total_month}},00 AOA
-                    @endif
-                </td>
-                @endfor
-                @endif
-            </tr>
-        </tbody>
-    </table>
+                            <th>Total</th>
+                            <td colspan="2">
+                                {{$total_month}},00 AOA
 
+                            </td>
+
+                            @endif
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+
 @endsection

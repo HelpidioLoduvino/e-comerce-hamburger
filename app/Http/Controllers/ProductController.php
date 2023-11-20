@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\ConfirmOrder;
 use App\Models\OrderItem;
 use App\Models\Publicity;
 use App\Models\Sale;
@@ -162,8 +163,8 @@ class ProductController extends Controller
         }
     }
 
-    public function storeOrder(Request $request, $user_id){
-        Order::create([
+    public function confirmOrder(Request $request, $user_id){
+        ConfirmOrder::create([
             'user_id' => $user_id,
             'total' => $request->input('total'),
             'payment_method' => $request->input('payment_method'),
@@ -173,7 +174,7 @@ class ProductController extends Controller
     }
 
     public function showOrderItem($user_id){
-            $orders = Order::where('user_id', $user_id)
+            $orders = confirmOrder::where('user_id', $user_id)
                         ->get();
 
             $items = Cart::select('carts.product_id', 'carts.quantity', 'products.product_name')
@@ -184,8 +185,15 @@ class ProductController extends Controller
         return view('confirmOrder', ['orders' => $orders, 'items' => $items]);
     }
 
-    public function storeOrderItem(Request $request, $user_id){
-        $order_id = $request->input('order_id');
+    public function storeOrder(Request $request, $user_id){
+
+        $order = Order::create([
+            'user_id' => $user_id,
+            'total' => $request->input('total'),
+            'payment_method' => $request->input('payment_method'),
+        ]);
+
+        $order_id = $order->id;
         $product_ids = $request->input('product_id');
         $quantities = $request->input('quantity');
     
@@ -197,6 +205,11 @@ class ProductController extends Controller
                 'quantity' => $quantity 
             ]);
         }
+
+        $confirm_order_id = $request->input('confirm_order_id');
+
+        $delete_confirm_order = ConfirmOrder::find($confirm_order_id);
+        $delete_confirm_order->delete();
 
         /*
 
@@ -238,17 +251,22 @@ class ProductController extends Controller
     }
 
     public function cancelCartOrder($user_id){
-        $cancel = Order::where('user_id', $user_id)->delete();
+        $cancel = ConfirmOrder::where('user_id', $user_id)->delete();
 
         return redirect('/cart/'. $user_id);
     }
 
     public function showOrder($user_id){
 
-        $orders = Order::select('orders.*', 'order_items.product_id', 'order_items.quantity', 'products.*')
+        $orders = Order::select('orders.*', 'order_items.product_id', 'order_items.quantity', 
+                                'products.product_name', 'products.price', 'products.image', 'products.description', 
+                                'users.name', 'users.surname', 'users.contact')
                         ->join('order_items', 'order_items.order_id', '=', 'orders.id')
                         ->join('products', 'products.id', '=', 'order_items.product_id')
-                        ->where('orders.user_id', $user_id)->get();
+                        ->join('users', 'users.id', '=', 'orders.user_id')
+                        ->where('user_id', $user_id)
+                        ->get()
+                        ->groupBy('id');
 
         if($orders->isNotEmpty()){
             return view('order', ['orders' => $orders]);

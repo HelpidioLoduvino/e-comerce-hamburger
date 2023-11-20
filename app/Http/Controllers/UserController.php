@@ -97,10 +97,10 @@ class UserController extends Controller
         }
         
         if($clients->isNotEmpty()){
-            return view('client', compact('clients'), compact('sum'));
+            return view('client', compact('clients', 'sum'));
         } else {
             $clients = [];
-            return view('client', ['clients' => $clients, 'sum' => $sum]);
+            return view('client', compact('clients', 'sum'));
         }
        
     }

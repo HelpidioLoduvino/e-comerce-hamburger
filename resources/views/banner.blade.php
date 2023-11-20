@@ -37,38 +37,41 @@
     @if(!empty($publicity))
     <h5>TABELA DE PUBLICIDADES</h5>
     <div class="delimitador"></div>
-    <table class="table table-bordered mt-3">
-        <thead>
-            <tr>
-                <th>Título</th>
-                <th>Descrição</th>
-                <th>Imagem</th>
-                <th>Data</th>
-                <th>Apagar</th>
-            </tr>
-        </thead>
-        
-        @foreach($publicity as $post)
-        <tbody>
-            <tr>
-                <td>{{$post->title}}</td>
-                <td>{{$post->pub_description}}</td>
-                <td>
-                    <img src="{{asset('/img/bdImages/'. $post->img)}}" class="d-block" height="30" alt="...">
-                </td>
-                <td>{{$post->date}}</td>
-                <td>
-                    <form method="post" action="/delete-publicity/{{$post->id}}">
-                        @csrf
-                        <button type="submit" class="btn btn-danger">
-                            <img src="{{asset('/img/trash.png')}}" width="20" height="20">
-                        </button>
-                    </form>
-                </td>
-            </tr>
-        </tbody>
-        @endforeach
-    </table>
+    <div class="table-responsive">
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                    <th>Imagem</th>
+                    <th>Data</th>
+                    <th>Apagar</th>
+                </tr>
+            </thead>
+
+            @foreach($publicity as $post)
+            <tbody>
+                <tr>
+                    <td>{{$post->title}}</td>
+                    <td>{{$post->pub_description}}</td>
+                    <td>
+                        <img src="{{asset('/img/bdImages/'. $post->img)}}" class="d-block" height="30" alt="...">
+                    </td>
+                    <td>{{$post->date}}</td>
+                    <td>
+                        <form method="post" action="/delete-publicity/{{$post->id}}">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">
+                                <img src="{{asset('/img/trash.png')}}" width="20" height="20">
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+            @endforeach
+        </table>
+    </div>
+
     @endif
 </div>
 @endsection

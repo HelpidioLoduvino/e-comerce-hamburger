@@ -37,9 +37,9 @@ Route::post('/add-to-cart/{product_id}/{user_id}', [ProductController::class, 'i
 Route::post('/cart/delete-product/{product_id}/{user_id}', [ProductController::class, 'deleteCartItem']);
 Route::post('/cart/add-product-quantity/{cart_id}/{user_id}', [ProductController::class, 'addQuantity']);
 Route::post('/cart/subtract-product-quantity/{cart_id}/{user_id}', [ProductController::class, 'subtractQuantity']);
-Route::post('/cart/order/{user_id}', [ProductController::class, 'storeOrder']);
+Route::post('/cart/confirm-order/{user_id}', [ProductController::class, 'confirmOrder']);
 Route::get('/confirm-order/{user_id}', [ProductController::class, 'showOrderItem']);
-Route::post('/confirm-order/{user_id}', [ProductController::class, 'storeOrderItem']);
+Route::post('/confirm-order/{user_id}', [ProductController::class, 'storeOrder']);
 Route::get('/order/{user_id}', [ProductController::class, 'showOrder']);
 Route::get('/view/show-client', [UserController::class, 'showClient']);
 Route::get('/view/show-product', [ProductController::class, 'showProductAdmin']);

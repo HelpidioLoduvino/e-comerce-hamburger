@@ -2,30 +2,61 @@
 
 @section('content')
 
-@foreach($orders as $order)
-<div class="card mb-3 mt-3">
-    <div class="row g-0">
-        <div class="col-md-4">
-            <img src="{{ asset('/img/bdImages/'. $order->image )}}" class="img-fluid rounded-start" alt="...">
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">{{$order->product_name}}</h5>
-                <p class="card-text">Preco: {{$order->price}}</p>
-                <p class="card-text">Unidade: {{$order->quantity}}</p>
-                <p class="card-text"><small class="text-muted">{{$order->description}}</small></p>
+<div class="container">
+
+    <h5 class="letra card-title mt-3">TABELA DE PEDIDO</h5>
+    <div class="home-line"></div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered mt-3 table-light">
+            <thead>
+                <tr>
+                    <th>ID PEDIDO</th>
+                    <th>TOTAL</th>
+                    <th>ESTADO</th>
+                    <th>METODO DE PAGAMENTO</th>
+                    <th>DATA</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(!empty($orders))
+                @foreach($orders as $order)
+                <tr>
+                    <td>{{$order[0]->id}}</td>
+                    <td>{{$order[0]->total}}</td>
+                    <td>{{$order[0]->status}}</td>
+                    <td>{{$order[0]->payment_method}}</td>
+                    <td>{{$order[0]->date}}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    <h5 class="letra card-title mt-3">PRODUTO</h5>
+    <div class="home-line"></div>
+
+    @foreach($orders as $order)
+    @foreach($order as $item)
+    <div class="card-white card mb-3 mt-3">
+        <div class="row g-0">
+            <div class="col">
+                <img src="{{ asset('/img/bdImages/' . $item->image)}}" class="img-fluid rounded-start" width="200"
+                    alt="...">
+            </div>
+            <div class="col-md-10">
+                <div class="card-body">
+                    <h5>ID DO PEDIDO: {{$order[0]->id}}</h5>
+                    <h7 class="card-title">{{ $item->product_name }}</h7><br>
+                    <h7 class="card-title">Unidade: {{ $item->quantity }}</h7>
+                    <p class="card-text"><small class="text-muted">{{ $item->description }}</small></p>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    @endforeach
+    @endforeach
+    @endif
 
-@endforeach
-
-<div class="card card-body" style="max-width: 540px;">
-    <h3 style="color:green;">TOTAL: {{$order->total}}</h3>
-    <h6>ESTADO DA ENCOMENDA: {{$order->status}}</h6>
-    <h6>METODO DE PAGAMENTO: {{$order->payment_method}}</h6>
-    <h6>DATA: {{$order->date}}</h6>
 </div>
 
 @endsection

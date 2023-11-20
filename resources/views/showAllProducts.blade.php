@@ -9,7 +9,7 @@
         <div class="row">
             @foreach($products as $product)
             <div class="col">
-                <div class="card mb-3" style="width: 18rem;">
+                <div class="card mb-3 mx-auto" style="width: 18rem;">
                     <img src="{{ asset('/img/bdImages/'. $product->image) }}" class="myImg card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{$product->product_name}}</h5>
