@@ -87,25 +87,30 @@
                         <input type="hidden" name="type" value="client">
 
                         <div class="mb-3">
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Nome" required>
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Nome">
                         </div>
 
                         <div class="mb-3">
-                            <input type="text" name="surname" id="surname" class="form-control" placeholder="Sobrenome" required>
+                            <input type="text" name="surname" id="surname" class="form-control" placeholder="Sobrenome">
                         </div>
 
                         <div class="mb-3">
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Email">
                         </div>
 
                         <div class="mb-3">
                             <input type="number" name="contact" id="contact" class="form-control"
-                                placeholder="Contacto" required>
+                                placeholder="Contacto">
                         </div>
 
                         <div class="mb-3">
                             <input type="password" name="password" id="password" class="form-control"
-                                placeholder="Palavra-Passe" required>
+                                placeholder="Palavra-Passe">
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="password" name="confirm_password" id="password" class="form-control"
+                                placeholder="Confirmar Palavra-Passe">
                         </div>
 
                         <div class="mb-3">

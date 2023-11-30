@@ -24,11 +24,20 @@ class UserController extends Controller
 
     public function store(Request $request){
 
-        $contact = $request->input('contact');
+        $validator = $request->validate([
+            'name' => 'required|string',
+            'surname' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'contact' => 'required|numeric|digits:9',
+            'password' => 'required|string|min:6',
+            'confirm_password' => 'required|string|same:password',
+            'type' => 'required|string',
+        ], [
+            'confirm_password.same' => 'palavra-passe must be the same as confirmar palavra-passe.',
+        ]);
 
-        if(strlen($contact)  < 9){
-            return redirect('/')->with('msg', 'Contacto Incorrecto!');
-        } else {
+        try{
+
             User::create([
                 'name' => $request->input('name'),
                 'surname' => $request->input('surname'),
@@ -44,8 +53,10 @@ class UserController extends Controller
             );
     
             return redirect('/')->with('msg', 'Dados inseridos com sucesso!');
-        }
 
+        }catch (Exception $ex){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
       
     }
 

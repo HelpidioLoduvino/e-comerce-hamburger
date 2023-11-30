@@ -8,19 +8,24 @@
 
 @section('content')
 <div class="container mt-2">
-<div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="2000">
-            <img src="{{asset('/img/logo.png')}}" class="d-block w-100" alt="..." style="transform: rotate(12deg)">
-        </div>
-        <div class="carousel-item d-flex justify-content-center" data-bs-interval="2000">
-            <img src="{{asset('/img/logo.png')}}" class="d-block w-100" style="transform: rotate(25deg)">
-        </div>
-        <div class="carousel-item d-flex justify-content-end" data-bs-interval="2000">
-            <img src="{{asset('/img/logo.png')}}" class="d-block w-100" alt="...">
+
+    @if($errors->any())
+    <div class="alert alert-danger d-flex justify-content-center">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
+    <div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{{asset('/img/img1.png')}}" class="d-block w-100 img-fluid" style="height:600px; object-fit: cover;">
+            </div>
         </div>
     </div>
-</div>
 
 </div>
 
@@ -66,13 +71,13 @@
 <div id="carouselExampleCaptions" class="carousel slide mt-3" data-bs-ride="carousel">
     <div class="carousel-inner">
         @foreach($publicities as $index => $publicity)
-            <div class="carousel-item {{$index === 0 ? 'active' : ''}} d-flex justify-content-center">
-                <img src="{{asset('/img/bdImages/'. $publicity->img)}}" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>{{$publicity->title}}</h5>
-                    <p>{{$publicity->pub_description}}</p>
-                </div>
+        <div class="carousel-item {{$index === 0 ? 'active' : ''}} d-flex justify-content-center">
+            <img src="{{asset('/img/bdImages/'. $publicity->img)}}" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>{{$publicity->title}}</h5>
+                <p>{{$publicity->pub_description}}</p>
             </div>
+        </div>
         @endforeach
     </div>
 </div>
