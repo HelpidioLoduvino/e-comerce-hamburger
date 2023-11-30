@@ -63,24 +63,36 @@ class UserController extends Controller
     
     public function login (Request $request) {
 
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-            $user = Auth::user();
-            session(['id' =>$user->id, 'type' => $user->type]);
-            $sessionType = session('type');
-            switch($sessionType){
-                case 'client':
-                    return redirect('/')->with('msg', 'Login Com Sucesso');
-                    break;
-                case 'manager':
-                    return redirect('/view/home')->with('msg','Admin Logado Com Sucesso');
-                    break;
-                default:
-                return view('/')->with('error', 'Erro ao Fazer Login');
-                    break;
+        $validator = $request->validate([
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|string',
+        ], [
+            'email.exists' => 'Email or password is incorrect.',
+        ]);
+
+        try{
+            if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+                $user = Auth::user();
+                session(['id' =>$user->id, 'type' => $user->type]);
+                $sessionType = session('type');
+                switch($sessionType){
+                    case 'client':
+                        return redirect('/')->with('msg', 'Login Com Sucesso');
+                        break;
+                    case 'manager':
+                        return redirect('/view/home')->with('msg','Admin Logado Com Sucesso');
+                        break;
+                    default:
+                        return view('/')->with('error', 'Erro ao Fazer Login');
+                        break;
+                }
+            } else {
+                return redirect()->back()->withErrors(['password' => 'Password is incorrect']);
             }
-        } else {
-            return redirect('/')->with('msg', 'Email ou Senha Incorrecta!');
+        }catch (Exception $e){
+            return redirect()->back()->withErrors($validator)->withInput();
         }
+
     }
 
     public function logout(Request $request){
