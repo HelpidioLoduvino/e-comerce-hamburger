@@ -34,7 +34,7 @@
                 @if(session('type'))
                 <li class="nav-item">
                     <a class="link-color nav-link" href="/cart/{{session('id')}}">
-                        <img src="{{asset('/img/cart.png')}}" alt="" width="40" height="35">
+                        <img src="{{asset('/icon/shopping-cart.svg')}}" height="30">
                         @yield('cart-count')
                     </a>
                 </li>
@@ -54,7 +54,7 @@
                 @if(session('type'))
                 <li class="nav-item">
                     <a class="link-color nav-link" href="/my-profile/{{ session('id')}}">
-                        <img src="{{asset('/img/profile.png')}}" alt="" width="40" height="35">
+                        <img src="{{asset('/icon/account-circle.svg')}}" height="35">
                     </a>
                 </li>
                 @endif
